@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroPlan Perú Pro - Manual Técnico Integrado</title>
+    <style>
+        :root {
+            --primary: #1b5e20;
+            --primary-light: #4c8c4a;
+            --primary-dark: #003300;
+            --mip-color: #e65100;
+            --nutri-color: #0d47a1;
+            --bg-light: #f5f5f5;
+            --text-main: #212121;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 26px;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        /* SISTEMA DE NAVEGACIÓN SIN JAVASCRIPT */
+        .nav-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .nav-btn {
+            background-color: white;
+            border: 2px solid var(--primary-light);
+            color: var(--primary-dark);
+            padding: 12px 20px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .nav-btn:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* CONTENEDORES DE CULTIVOS */
+        .cultivo-block {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            margin-bottom: 40px;
+            overflow: hidden;
+            border-top: 6px solid var(--primary);
+            scroll-margin-top: 20px;
+        }
+
+        .cultivo-header {
+            background-color: #f1f8e9;
+            padding: 15px 20px;
+            border-bottom: 1px solid #dcedc8;
+        }
+
+        .cultivo-header h2 {
+            color: var(--primary-dark);
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cultivo-header span {
+            font-style: italic;
+            font-size: 14px;
+            color: #558b2f;
+            font-weight: normal;
+        }
+
+        /* ESTRUCTURA DE ETAPAS */
+        .etapa-box {
+            padding: 20px;
+            border-bottom: 2px dashed #e0e0e0;
+        }
+
+        .etapa-box:last-child {
+            border-bottom: none;
+        }
+
+        .etapa-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            background-color: #37474f;
+            padding: 6px 15px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .grid-planes {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-planes {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .plan-card {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border: 1px solid #e0e0e0;
+        }
+
+        .plan-card.fitosanitario { border-top: 4px solid var(--mip-color); }
+        .plan-card.nutricional { border-top: 4px solid var(--nutri-color); }
+
+        .card-header {
+            padding: 10px 15px;
+            font-weight: bold;
+            color: white;
+            font-size: 14px;
+        }
+
+        .plan-card.fitosanitario .card-header { background-color: var(--mip-color); }
+        .plan-card.nutricional .card-header { background-color: var(--nutri-color); }
+
+        .card-body {
+            padding: 15px;
+            background-color: #fafafa;
+        }
+
+        .sub-seccion {
+            margin-bottom: 12px;
+        }
+
+        .sub-seccion:last-child {
+            margin-bottom: 0;
+        }
+
+        .sub-seccion-title {
+            font-weight: bold;
+            font-size: 13px;
+            color: #424242;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 2px;
+        }
+
+        .sub-seccion p {
+            font-size: 13.5px;
+            color: #424242;
+            text-align: justify;
+        }
+
+        /* PIE DE PÁGINA */
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: #757575;
+            background-color: white;
+            border-top: 1px solid #e0e0e0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>AgroPlan Perú Pro</h1>
+        <p>Manual Móvil de MIP y Nutrición Vegetal Extendido (Costa, Sierra y Selva) • 100% Offline</p>
+    </header>
+
+    <div class="container">
+        
+        <!-- MENÚ DE NAVEGACIÓN RÁPIDA -->
+        <div class="nav-container">
+            <a href="#culantro" class="nav-btn">🌿 Culantro</a>
+            <a href="#lechuga" class="nav-btn">🥬 Lechuga</a>
+            <a href="#china" class="nav-btn">🌱 Cebolla China</a>
+            <a href="#roja" class="nav-btn">🧅 Cebolla Roja</a>
+            <a href="#rabanito" class="nav-btn">🔴 Rabanito</a>
+            <a href="#esparrago" class="nav-btn">🎋 Espárrago</a>
+            <a href="#legumbres" class="nav-btn">🫘 Legumbres</a>
+            <a href="#cereales" class="nav-btn">🌾 Cereales</a>
+            <a href="#frutales" class="nav-btn">🥑 Frutales y Cítricos</a>
+        </div>
+
+        <!-- 1. CULANTRO -->
+        <div id="culantro" class="cultivo-block">
+            <div class="cultivo-header">
+                <h2>🌿 Culantro <span>(Coriandrum sativum)</span></h2>
+            </div>
+            
+            <div class="etapa-box">
+                <div class="etapa-title">Etapa 1: Germinación e Inicial (0 - 15 días)</div>
+                <div class="grid-planes">
+                    <div class="plan-card fitosanitario">
+                        <div class="card-header">🛡️ PLAN FITOSANITARIO (MIP)</div>
+                        <div class="card-body">
+                            <div class="sub-seccion">
+                                <div class="sub-seccion-title">Control Cultural</div>
+                                <p>Uso de camas altas para evitar encharcamientos; desinfección solar del suelo (solarización).</p>
+                            </div>
+                            <div class="sub-seccion">
+                                <div class="sub-seccion-title">Control Biológico</div>
+                                <p>Aplicación al suelo de Trichoderma harzianum para prevenir Chupadera (Rhizoctonia solani).</p>
+                            </div>
+                            <div class="sub-seccion">
+                                <div class="sub-seccion-title">Control Químico</div>
+                                <p>En caso extremo de ataque de insectos de suelo, tratar con Cipermetrina en dosis baja.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="plan-card nutricional">
+                        <div class="card-header">🌱 PLAN NUTRICIONAL</div>
+                        <div class="card-body">
+                            <div class="sub-seccion">
+                                <div class="sub-seccion-title">Suelo (Granulado)</div>
+                                <p>Incorporar 10 t/ha de compost maduro + 40 kg/ha de P2O5 (Fosfato Diamónico) como base en fondo.</p>
+                            </div>
+                            <div class="sub-seccion">
+                                <div class="sub-seccion-title">Foliar</div>
+                                <p>Enraizadores a base de aminoácidos + Zinc para uniformizar la emergencia de plántulas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="etapa-box">
+                <div class="etapa-title">Etapa 2: Crecimiento y Follaje (16 - 45 días)</div>
+                <div class="grid-planes">
+                    <div class="plan-card fitosanitario">
+                        <div class="card-header">🛡️ PLAN FITOSANITARIO (MIP)</div>
+                        <div class="card-body">
+                            <div class="sub-seccion">
+                                <div class="sub-seccion-title">Control Cultural</div>
+                                <p>Control mecánico de malezas hospederas; riegos ligeros y frecuentes para evitar estrés hídrico.</p>
+                            </div>
+                            <div class="sub-seccion">
+                                <div class="sub-seccion-title">Control Biológico</div>
+                                <p>Uso de extracto de Neem y liberación de Chrysoperla externa contra Pulgones (Aphis spp.).</p>
+                            </div>
+                            <div class="sub-seccion">
+                                <div class="sub-seccion-title">Control Químico</div>
